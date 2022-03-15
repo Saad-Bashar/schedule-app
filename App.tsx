@@ -1,22 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React from "react";
+import { StyleSheet } from "react-native";
+import store from "./redux/store";
+import { Provider } from "react-redux";
+import RootNavigation from "./navigation";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import { useFonts } from "expo-font";
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+const persistor = persistStore(store);
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+  const [loaded] = useFonts({
+    "Spartan-Bold": require("./assets/fonts/Spartan-Bold.ttf"),
+    "Spartan-Medium": require("./assets/fonts/Spartan-Medium.ttf"),
+  });
 
-  if (!isLoadingComplete) {
+  if (!loaded) {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <RootNavigation />
+        </PersistGate>
+      </Provider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
