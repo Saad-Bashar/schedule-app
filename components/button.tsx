@@ -12,7 +12,7 @@ const backgroundColor = {
 const textColor = {
     primary: "#FFFFFF",
     default: "#7E88C3",
-    secondary: "#888EB0"
+    secondary: "#FFFFFF"
 }
 
 export default function Button({title, onPress, preset = 'default', style}: {title: string, onPress?: () => void, preset?: 'default' | 'secondary' | 'primary', style?: ViewStyle[] | ViewStyle}) {

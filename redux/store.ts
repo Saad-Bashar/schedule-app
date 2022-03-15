@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import counterReducer from "./counterSlice";
-import invoiceReducer from "./invoiceSlice";
+import scheduleReducer from './scheduleSlice';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   persistReducer,
@@ -21,7 +21,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  invoice: invoiceReducer,
+  schedule: scheduleReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

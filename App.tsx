@@ -6,6 +6,8 @@ import RootNavigation from "./navigation";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { useFonts } from "expo-font";
+import { SafeAreaView } from "react-native-safe-area-context";
+import t from "./theme";
 
 const persistor = persistStore(store);
 
@@ -21,18 +23,12 @@ export default function App() {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <RootNavigation />
+          <SafeAreaView style={[t.flex1]}>
+            <RootNavigation />
+          </SafeAreaView>
         </PersistGate>
       </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
