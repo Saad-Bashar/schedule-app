@@ -12,12 +12,8 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/CoachesScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
-import LinkingConfiguration from './LinkingConfiguration';
 import CoachDetailsScreen from '../screens/CoachDetailsScreen';
 import UpcomingBookingScreen from '../screens/UpcomingBookingScreen';
 import t from '../theme';
@@ -32,7 +28,7 @@ const THEME = {
 
 export default function Navigation() {
   return (
-    <NavigationContainer theme={THEME}  linking={LinkingConfiguration}>
+    <NavigationContainer theme={THEME}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -49,10 +45,6 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="CoachDetails" component={CoachDetailsScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
     </Stack.Navigator>
   );
 }

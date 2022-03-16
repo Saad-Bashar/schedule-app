@@ -8,11 +8,10 @@ export interface DATA_TYPE {
     available_until: string;
     image: ImageSourcePropType
     skills: string[],
-    timeSlots?: TIME_SLOT[]
+    timeSlots?: TIME_SLOT
 }
 
 export interface TIME_SLOT {
-    id: string;
     slots: string[]
     booked: boolean
 }
