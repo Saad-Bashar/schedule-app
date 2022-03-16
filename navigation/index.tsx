@@ -18,6 +18,7 @@ import TabOneScreen from '../screens/CoachesScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import CoachDetailsScreen from '../screens/CoachDetailsScreen';
 
 const THEME = {
   ...DefaultTheme,
@@ -45,6 +46,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="CoachDetails" component={CoachDetailsScreen} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -95,5 +97,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome5>['name'];
   color: string;
 }) {
-  return <FontAwesome5 size={30} style={{ marginBottom: -5 }} {...props} />;
+  return <FontAwesome5 size={24} style={{ marginBottom: -5 }} {...props} />;
 }

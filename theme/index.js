@@ -19,6 +19,7 @@ export const dark = createTheme({
 });
 
 const t = createTheme({
+  colors: {},
   fontFamilies: {
     sans: "Spartan-Medium",
     sansBold: "Spartan-Bold",

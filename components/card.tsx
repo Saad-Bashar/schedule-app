@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react'
-import { ViewProps, StyleSheet, View, ViewStyle } from 'react-native'
+import { ViewProps, StyleSheet, View, ViewStyle, Pressable } from 'react-native'
 import t from '../theme'
 
 
-export const Card = ({ customStyles, children, ...props }: {customStyles?: ViewStyle[], children: JSX.Element[] }) => (
-  <View style={[t.m4, t.p2, t.rounded, styles.card, t.bgWhite, customStyles]}>
+export const Card = ({ customStyles, children, onPress, ...props }: {customStyles?: ViewStyle[], onPress?: () => void; children: JSX.Element[] }) => (
+  <Pressable style={[t.m4, t.p2, t.rounded, styles.card, t.bgWhite, customStyles]}>
     {children}
-  </View>
+  </Pressable>
 )
 const styles = StyleSheet.create({
     card: {

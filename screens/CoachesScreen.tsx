@@ -4,16 +4,25 @@ import Text from '../components/text/Text';
 import t from '../theme';
 import { Card } from '../components/card';
 import {  DATA_TYPE } from '../data';
-import { useSelector } from 'react-redux';
-import { selectSchedules } from '../redux/scheduleSlice';
-import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { generateTimeSlots, selectSchedules } from '../redux/scheduleSlice';
+import { useEffect, useMemo } from 'react';
 import Button from '../components/button';
 
 export default function CoachesScreen({ navigation }: RootTabScreenProps<'Coaches'>) {
+  const dispatch = useDispatch()
   const scheduleData = useSelector(selectSchedules)
+  console.log({scheduleData})
+  // We only want to show the unique data from the coaches
   const coachList = useMemo(() => {
     return [...new Map(scheduleData.map(item => [item['name'], item])).values()];
   }, []);
+  
+  // NOTE::  We want to generate the slots for the coaches in the first screen
+  // Since there is no API involved here, better to have the slots generated for this small demo
+  useEffect(() => {
+    dispatch(generateTimeSlots())
+  },[])
 
   const renderItem = ({item} : {item: DATA_TYPE}) => {
     const { name, image, skills } = item
@@ -36,7 +45,10 @@ export default function CoachesScreen({ navigation }: RootTabScreenProps<'Coache
               </View>
             </View>
         </View>
-        <Button preset='secondary' title={`Book ${name}`} />
+        <Button onPress={() => {
+        //@ts-ignore
+        navigation.navigate('CoachDetails', {name: name})
+      }} preset='secondary' title={`Book ${name}`} />
       </Card>
     )
   }
