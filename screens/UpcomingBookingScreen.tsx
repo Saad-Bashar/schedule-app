@@ -56,7 +56,8 @@ export default function UpcomingBookingScreen({navigation}: {navigation: NativeS
             <FlatList 
                 data={bookings}  
                 renderItem={renderItem}
-                keyExtractor={(item : Booking) => item.timeSlot}
+                keyExtractor={(item : Booking, index) => index.toString()}
+                contentContainerStyle={[t.pB5]}
             />
           </View>
         </View>

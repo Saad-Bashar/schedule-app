@@ -29,6 +29,8 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": "Scheduling app.",
+    "githubUrl": "https://github.com/Saad-Bashar/schedule-app/"
   }
 }
