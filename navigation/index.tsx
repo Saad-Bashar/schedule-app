@@ -19,6 +19,8 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import CoachDetailsScreen from '../screens/CoachDetailsScreen';
+import UpcomingBookingScreen from '../screens/UpcomingBookingScreen';
+import t from '../theme';
 
 const THEME = {
   ...DefaultTheme,
@@ -75,15 +77,21 @@ function BottomTabNavigator() {
         name="Coaches"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'Coaches'>) => ({
+          tabBarLabelStyle: {
+            ...t.fontMonoBold,
+          },
           tabBarIcon: ({ color }) => <TabBarIcon name="user-astronaut" color={color} />,
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="UpcomingBooking"
+        component={UpcomingBookingScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'My Bookings',
+          tabBarLabelStyle: {
+            ...t.fontMonoBold,
+          },
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
         }}
       />
     </BottomTab.Navigator>

@@ -12,6 +12,7 @@ export interface DATA_TYPE {
 }
 
 export interface TIME_SLOT {
+    id: string;
     slots: string[]
     booked: boolean
 }

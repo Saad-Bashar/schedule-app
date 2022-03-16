@@ -3,7 +3,7 @@ import { ViewProps, StyleSheet, View, ViewStyle, Pressable } from 'react-native'
 import t from '../theme'
 
 
-export const Card = ({ customStyles, children, onPress, ...props }: {customStyles?: ViewStyle[], onPress?: () => void; children: JSX.Element[] }) => (
+export const Card = ({ customStyles, children, onPress, ...props }: {customStyles?: ViewStyle[], onPress?: () => void; children: JSX.Element[] | JSX.Element }) => (
   <Pressable style={[t.m4, t.p2, t.rounded, styles.card, t.bgWhite, customStyles]}>
     {children}
   </Pressable>

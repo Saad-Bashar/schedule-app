@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { generateTimeSlots, selectSchedules } from '../redux/scheduleSlice';
 import { useEffect, useMemo } from 'react';
 import Button from '../components/button';
+import { selectLaunch, setLaunched } from '../redux/launchSlice';
 
 export default function CoachesScreen({ navigation }: RootTabScreenProps<'Coaches'>) {
   const dispatch = useDispatch()
   const scheduleData = useSelector(selectSchedules)
+  const isLaunchedBefore = useSelector(selectLaunch)
   console.log({scheduleData})
   // We only want to show the unique data from the coaches
   const coachList = useMemo(() => {
@@ -21,7 +23,11 @@ export default function CoachesScreen({ navigation }: RootTabScreenProps<'Coache
   // NOTE::  We want to generate the slots for the coaches in the first screen
   // Since there is no API involved here, better to have the slots generated for this small demo
   useEffect(() => {
-    dispatch(generateTimeSlots())
+    // only generate the slots for the first time  
+    if (!isLaunchedBefore) {
+      dispatch(generateTimeSlots())
+      dispatch(setLaunched())
+    }
   },[])
 
   const renderItem = ({item} : {item: DATA_TYPE}) => {
@@ -58,14 +64,12 @@ export default function CoachesScreen({ navigation }: RootTabScreenProps<'Coache
       <View style={[t.p5]}>
         <Text preset='h2'>Coaches for you</Text>
       </View>
-
       <FlatList 
         data={coachList}
         renderItem={renderItem}
         keyExtractor={(item) => item.name}
 
       />
-      
     </View>
   );
 }
