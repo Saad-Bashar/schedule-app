@@ -92,7 +92,7 @@ export default function CoachDetailsScreen({route, navigation}: {route: { params
         <FlatList
           contentContainerStyle={[t.p5]}
           numColumns={3}
-          data={coachDataAccordingToDay.timeSlots}
+          data={coachDataAccordingToDay?.timeSlots}
           renderItem={({ item }) => {
             const { slots, booked, id } = item;
             const isActive = selectedSlot?.id === id;
@@ -108,7 +108,8 @@ export default function CoachDetailsScreen({route, navigation}: {route: { params
                   style={[
                     t.textXs,
                     t.fontSansBold,
-                    isActive ? t.textWhite : t.textXs,
+                    t.textBlack,
+                    isActive ? t.textWhite : t.textBlack,
                     booked ? t.textBlack : t.textXs,
                   ]}
                 >
