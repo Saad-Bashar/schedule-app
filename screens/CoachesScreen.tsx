@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, Image} from 'react-native';
+import { View, FlatList, Image} from 'react-native';
 import { RootTabScreenProps } from '../types';
 import Text from '../components/text/Text';
 import t from '../theme';
@@ -14,7 +14,7 @@ export default function CoachesScreen({ navigation }: RootTabScreenProps<'Coache
   const dispatch = useDispatch()
   const scheduleData = useSelector(selectSchedules)
   const isLaunchedBefore = useSelector(selectLaunch)
-  console.log({scheduleData})
+  
   // We only want to show the unique data from the coaches
   const coachList = useMemo(() => {
     return [...new Map(scheduleData.map(item => [item['name'], item])).values()];
